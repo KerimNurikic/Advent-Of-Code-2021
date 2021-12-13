@@ -1,0 +1,11 @@
+﻿  Advent.cpp
+C:\Users\User\Documents\Advent\Advent\Advent\Advent.cpp(79,18): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\User\Documents\Advent\Advent\Advent\Advent.cpp(82,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\User\Documents\Advent\Advent\Advent\Advent.cpp(141,11): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\User\Documents\Advent\Advent\Advent\Advent.cpp(142,11): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\User\Documents\Advent\Advent\Advent\Advent.cpp(456,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\Documents\Advent\Advent\Advent\Advent.cpp(578,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\Documents\Advent\Advent\Advent\Advent.cpp(737,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\Documents\Advent\Advent\Advent\Advent.cpp(933,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\User\Documents\Advent\Advent\Advent\Advent.cpp(1079,20): warning C4018: '<': signed/unsigned mismatch
+  Advent.vcxproj -> C:\Users\User\Documents\Advent\Advent\Debug\Advent.exe
