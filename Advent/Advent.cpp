@@ -1118,6 +1118,7 @@ void round13() {
 }
 int main() {
 	round13();
+	std::cout << "ok";
 	return 0;
 }
 
