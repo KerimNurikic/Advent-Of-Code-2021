@@ -1137,16 +1137,12 @@ void round14() {
 	pairsTemp = pairs;
 	int steps = 40;
 	for (int i = 0; i < steps; i++) {
-		
 		for (auto it = pairs.begin(); it != pairs.end(); it++) {
-			//while (it->second != 0) {
-				char c = pairInsertionRules[it->first];
-				pairsTemp[it->first.substr(0,1) + c]+=it->second;
-				pairsTemp[c + it->first.substr(1,1)]+=it->second;
-				//it->second--;
-				pairsTemp[it->first]-=it->second;
-				it->second = 0;
-			//}
+			char c = pairInsertionRules[it->first];
+			pairsTemp[it->first.substr(0, 1) + c] += it->second;
+			pairsTemp[c + it->first.substr(1, 1)] += it->second;
+			pairsTemp[it->first] -= it->second;
+			it->second = 0;
 		}
 		pairs = pairsTemp;
 		std::cout << i << ". step done!" << std::endl;
@@ -1174,7 +1170,7 @@ void round14() {
 			min = it->second;
 		}
 	}
-	std::cout <<"Max: "<<max << ", Min: "<<min <<", Difference: " << max - min;
+	std::cout << "Max: " << max << ", Min: " << min << ", Difference: " << max - min;
 	input.close();
 }
 
