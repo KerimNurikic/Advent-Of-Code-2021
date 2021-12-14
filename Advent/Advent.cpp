@@ -1116,9 +1116,71 @@ void round13() {
 
 	input.close();
 }
+
+void round14() {
+	std::ifstream input("inputs/round14.txt");
+	std::string polymerTemplate;
+	std::string s;
+	std::getline(input, polymerTemplate);
+	std::getline(input, s);
+	std::map <std::string, char> pairInsertionRules;
+	while (std::getline(input, s)) {
+		pairInsertionRules[s.substr(0, 2)] = s[6];
+	}
+	char firstChar = polymerTemplate[0];
+	char lastChar = polymerTemplate[polymerTemplate.size() - 1];
+	std::map<std::string, long long> pairs;
+	std::map<std::string, long long> pairsTemp;
+	for (int i = 0; i < polymerTemplate.size() - 1; i++) {
+		pairs[polymerTemplate.substr(i, 2)] ++;
+	}
+	pairsTemp = pairs;
+	int steps = 40;
+	for (int i = 0; i < steps; i++) {
+		
+		for (auto it = pairs.begin(); it != pairs.end(); it++) {
+			//while (it->second != 0) {
+				char c = pairInsertionRules[it->first];
+				pairsTemp[it->first.substr(0,1) + c]+=it->second;
+				pairsTemp[c + it->first.substr(1,1)]+=it->second;
+				//it->second--;
+				pairsTemp[it->first]-=it->second;
+				it->second = 0;
+			//}
+		}
+		pairs = pairsTemp;
+		std::cout << i << ". step done!" << std::endl;
+	}
+	std::map<char, long long> occurences;
+	for (auto it = pairs.begin(); it != pairs.end(); it++) {
+		occurences[it->first[0]] += it->second;
+		occurences[it->first[1]] += it->second;
+	}
+	for (auto it = occurences.begin(); it != occurences.end(); it++) {
+		if (it->first == firstChar || it->first == lastChar) {
+			it->second = (it->second + 1) / 2;
+		}
+		else {
+			it->second = it->second / 2;
+		}
+	}
+	long long max = occurences[firstChar];
+	long long min = occurences[firstChar];
+	for (auto it = occurences.begin(); it != occurences.end(); it++) {
+		if (it->second > max) {
+			max = it->second;
+		}
+		if (it->second < min) {
+			min = it->second;
+		}
+	}
+	std::cout <<"Max: "<<max << ", Min: "<<min <<", Difference: " << max - min;
+	input.close();
+}
+
+
 int main() {
-	round13();
-	std::cout << "ok";
+	round14();
 	return 0;
 }
 
