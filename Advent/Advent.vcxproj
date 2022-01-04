@@ -141,6 +141,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Advent.cpp" />
+    <ClCompile Include="round13.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="round13.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

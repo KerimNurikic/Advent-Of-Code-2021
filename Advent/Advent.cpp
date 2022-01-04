@@ -7,6 +7,7 @@
 #include <sstream>
 #include <set>
 #include <stack>
+#include "round13.h"
 
 void round1() {
 	std::ifstream input("inputs/round1.txt");
@@ -1057,68 +1058,10 @@ void round12() {
 	input.close();
 }
 
-void round13() {
-	std::ifstream input("inputs/round13.txt");
-	std::set<std::pair<int, int>> dots;
-	int a, b;
-	char comma;
-	while (input >> a >> comma >> b) {
-		dots.insert({ a,b });
-	}
-	std::vector<std::pair<char, int>> instructions;
-	input.clear();
-	std::string s;
-	while (std::getline(input, s)) {
-		instructions.push_back({ s[11],std::stoi(s.substr(13)) });
-	}
-	int n = INT32_MAX;
-	int m = INT32_MAX;
-	int nMax = INT32_MAX;
-	int mMax = INT32_MAX;
-	int i = 0;
-	for (int i = 0; i < instructions.size(); i++) {
-		if (instructions[i].first == 'x') {
-			n = instructions[i].second;
-			for (auto it = dots.begin(); it != dots.end(); it++) {
-				if (it->first > n && it->first < nMax) {
-					dots.insert({ n - (it->first - n),it->second });
-				}
-			}
-			nMax = n;
-		}
-		else if (instructions[i].first == 'y') {
-			m = instructions[i].second;
-			for (auto it = dots.begin(); it != dots.end(); it++) {
-				if (it->second > m && it->second < mMax) {
-					dots.insert({ it->first, m - (it->second - m) });
-				}
-			}
-			mMax = m;
-		}
-	}
-	int numberOfDots = std::count_if(dots.begin(), dots.end(), [nMax, mMax](auto& x) {
-		if (x.first < nMax && x.second < mMax) {
-			//std::cout << x.first << "," << x.second << std::endl;
-			return true;
-		}
-		return false;
-		});
-	for (int i = 0; i < mMax; i++) {
-		for (int j = 0; j < nMax; j++) {
-			if (dots.contains({ j, i })) {
-				std::cout << "#";
-			}
-			else std::cout << ".";
-		}
-		std::cout << std::endl;
-	}
-	std::cout << "There are " << numberOfDots << " dots.";
 
-	input.close();
-}
 
 void round14() {
-	std::ifstream input("inputs/round14.txt");
+	std::ifstream input("inputs/round14Amer.txt");
 	std::string polymerTemplate;
 	std::string s;
 	std::getline(input, polymerTemplate);
@@ -1142,7 +1085,7 @@ void round14() {
 			pairsTemp[it->first.substr(0, 1) + c] += it->second;
 			pairsTemp[c + it->first.substr(1, 1)] += it->second;
 			pairsTemp[it->first] -= it->second;
-			it->second = 0;
+			//it->second = 0;
 		}
 		pairs = pairsTemp;
 		std::cout << i << ". step done!" << std::endl;
@@ -1151,6 +1094,7 @@ void round14() {
 	for (auto it = pairs.begin(); it != pairs.end(); it++) {
 		occurences[it->first[0]] += it->second;
 		occurences[it->first[1]] += it->second;
+		std::cout << "[" << it->first << "]=" << it->second << std::endl;
 	}
 	for (auto it = occurences.begin(); it != occurences.end(); it++) {
 		if (it->first == firstChar || it->first == lastChar) {
@@ -1169,14 +1113,29 @@ void round14() {
 		if (it->second < min) {
 			min = it->second;
 		}
+		
 	}
 	std::cout << "Max: " << max << ", Min: " << min << ", Difference: " << max - min;
 	input.close();
 }
 
+void round15() {
+	std::ifstream input("inputs/round15.txt");
+	std::string s;
+	std::vector<std::vector<int>> riskMap;
+	while (std::getline(input, s)) {
+		std::vector<int> temp{};
+		for (int i = 0; i < s.size(); i++) {
+			temp.push_back(s[i] - '0');
+		}
+		riskMap.push_back(temp);
+	}
+
+	std::cout << riskMap.size();
+}
 
 int main() {
-	round14();
+	round13();
 	return 0;
 }
 

@@ -18,5 +18,13 @@
     <ClCompile Include="Advent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="round13.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="round13.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
